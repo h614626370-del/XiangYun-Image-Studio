@@ -109,6 +109,47 @@ bash scripts/build-mac.sh
 
 更多说明见 [MAC_BUILD.md](./MAC_BUILD.md)。
 
+## macOS 客户端打开方式
+
+当前开源版本未做 Apple Developer ID 签名和公证，macOS 首次打开时可能提示“无法验证开发者”或“已损坏，无法打开”。下面方法只适用于你确认来源可信的软件；不明来源软件不要绕过系统安全检查。
+
+方法 1：右键打开，单次临时放行。
+
+1. 打开 DMG，把应用拖到 `Applications`。
+2. 在 `Applications` 中找到应用。
+3. 右键点击 `.app`，选择 `打开`。
+4. 弹窗提示无法验证时，再次点击 `打开`。
+
+这种方式较安全，但有时重启或重新打开后需要再次确认。
+
+方法 2：终端移除隔离标记，永久放行。
+
+打开“终端”，执行下面命令。可以把 `.app` 直接拖进终端自动补全路径：
+
+```bash
+xattr -cr /Applications/你的软件名.app
+```
+
+示例：
+
+```bash
+xattr -cr /Applications/云桥Pro.app
+```
+
+这条命令会删除 macOS 给下载应用添加的隔离检疫属性，之后通常可以正常双击打开。
+
+方法 3：临时关闭安全策略，不推荐。
+
+仅在你清楚风险时临时使用，用完务必恢复：
+
+```bash
+# 关闭公证拦截
+sudo spctl --master-disable
+
+# 恢复系统默认安全策略
+sudo spctl --master-enable
+```
+
 ## 项目结构
 
 ```text

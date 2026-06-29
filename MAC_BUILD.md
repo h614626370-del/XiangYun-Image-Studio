@@ -27,3 +27,37 @@ bash scripts/build-mac.sh
 ```text
 release/云桥Pro-0.1.8-*.dmg
 ```
+
+## 未签名应用的打开方式
+
+当前开源构建默认未做 Apple Developer ID 签名和公证，macOS 可能提示“无法验证开发者”或“已损坏，无法打开”。下面方法只适用于你确认来源可信的软件；不明来源软件不要绕过系统安全检查。
+
+### 方法 1：右键打开
+
+1. 打开 DMG，把应用拖到 `Applications`。
+2. 在 `Applications` 中右键点击 `.app`。
+3. 选择 `打开`。
+4. 弹窗提示无法验证时，再次点击 `打开`。
+
+### 方法 2：移除隔离标记
+
+打开“终端”，执行：
+
+```bash
+xattr -cr /Applications/你的软件名.app
+```
+
+示例：
+
+```bash
+xattr -cr /Applications/云桥Pro.app
+```
+
+### 方法 3：临时关闭安全策略（不推荐）
+
+仅在你清楚风险时临时使用，用完务必恢复：
+
+```bash
+sudo spctl --master-disable
+sudo spctl --master-enable
+```
