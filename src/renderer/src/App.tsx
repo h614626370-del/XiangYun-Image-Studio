@@ -240,7 +240,7 @@ type ImageFolderPick = {
   images: Array<{ path: string; name: string }>;
 };
 
-type YunqiaoBridge = {
+type XiangyunBridge = {
   setApiKey?: (key: string) => Promise<unknown>;
   generateImage?: (request: {
     prompt: string;
@@ -403,7 +403,7 @@ const storagePresets: Record<string, StoragePreset> = {
     name: "阿里云 OSS 主通道",
     type: "阿里云 OSS",
     endpoint: "oss-cn-hangzhou.aliyuncs.com",
-    bucket: "yunqiao-assets",
+    bucket: "xiangyun-assets",
     host: "",
     port: "",
     root: "{industry}/{project}/{year}{month}{day}",
@@ -413,27 +413,27 @@ const storagePresets: Record<string, StoragePreset> = {
     name: "腾讯云 COS 主通道",
     type: "腾讯云 COS",
     endpoint: "cos.ap-guangzhou.myqcloud.com",
-    bucket: "yunqiao-assets-1250000000",
+    bucket: "xiangyun-assets-1250000000",
     host: "",
     port: "",
     root: "{industry}/{project}/{year}{month}{day}",
-    publicUrl: "https://yunqiao-assets.cos.ap-guangzhou.myqcloud.com"
+    publicUrl: "https://xiangyun-assets.cos.ap-guangzhou.myqcloud.com"
   },
   "华为 OBS": {
     name: "华为 OBS 主通道",
     type: "华为 OBS",
     endpoint: "obs.cn-east-3.myhuaweicloud.com",
-    bucket: "yunqiao-assets",
+    bucket: "xiangyun-assets",
     host: "",
     port: "",
     root: "{industry}/{project}/{year}{month}{day}",
-    publicUrl: "https://yunqiao-assets.obs.cn-east-3.myhuaweicloud.com"
+    publicUrl: "https://xiangyun-assets.obs.cn-east-3.myhuaweicloud.com"
   },
   七牛云: {
     name: "七牛云 Kodo 主通道",
     type: "七牛云",
     endpoint: "s3-cn-east-1.qiniucs.com",
-    bucket: "yunqiao-assets",
+    bucket: "xiangyun-assets",
     host: "",
     port: "",
     root: "{industry}/{project}/{year}{month}{day}",
@@ -443,7 +443,7 @@ const storagePresets: Record<string, StoragePreset> = {
     name: "MinIO 私有存储",
     type: "MinIO",
     endpoint: "",
-    bucket: "yunqiao-assets",
+    bucket: "xiangyun-assets",
     host: "",
     port: "",
     root: "{industry}/{project}/{year}{month}{day}",
@@ -456,7 +456,7 @@ const storagePresets: Record<string, StoragePreset> = {
     bucket: "",
     host: "",
     port: "21",
-    root: "/public_html/yunqiao/{industry}/{project}/{year}{month}{day}",
+    root: "/public_html/xiangyun/{industry}/{project}/{year}{month}{day}",
     publicUrl: ""
   },
   SFTP: {
@@ -466,7 +466,7 @@ const storagePresets: Record<string, StoragePreset> = {
     bucket: "",
     host: "",
     port: "22",
-    root: "/data/www/yunqiao/{industry}/{project}/{year}{month}{day}",
+    root: "/data/www/xiangyun/{industry}/{project}/{year}{month}{day}",
     publicUrl: ""
   }
 };
@@ -1014,7 +1014,7 @@ const variableMeta: Record<string, { label: string; placeholder: string; default
   style: { label: "风格", placeholder: "例如 高级极简、电影写实、清新治愈", defaultValue: "高级、真实、干净" },
   audience: { label: "目标人群", placeholder: "例如 年轻白领、新手妈妈、企业客户", defaultValue: "目标客户" },
   subject: { label: "主题/主体", placeholder: "例如 夏季新品、悬疑短剧、企业培训", defaultValue: "创作主题" },
-  brand: { label: "品牌/机构", placeholder: "例如 云桥品牌、某某门店", defaultValue: "品牌" },
+  brand: { label: "品牌/机构", placeholder: "例如 向云品牌、某某门店", defaultValue: "品牌" },
   season: { label: "节日/季节", placeholder: "例如 618、春节、夏季上新", defaultValue: "当前活动季" },
   color_palette: { label: "色彩倾向", placeholder: "例如 莫兰迪、黑金、奶油白", defaultValue: "协调高级的商业配色" },
   platform: { label: "投放平台", placeholder: "例如 淘宝、抖音、小红书、亚马逊", defaultValue: "主流商业平台" },
@@ -1074,7 +1074,7 @@ function makePreviewUrl(label: string) {
       <path d="M138 680 C248 512 340 492 442 622 C540 746 662 496 826 676 L826 730 L138 730 Z" fill="#60a5fa" opacity="0.72"/>
       <path d="M146 728 C294 588 422 584 526 686 C616 774 708 644 834 718 L834 778 L146 778 Z" fill="#a78bfa" opacity="0.78"/>
       <text x="480" y="835" text-anchor="middle" fill="#eef6ff" font-family="Microsoft YaHei, Arial" font-size="40" font-weight="700">${safeLabel}</text>
-      <text x="480" y="884" text-anchor="middle" fill="#9fb7d4" font-family="Arial" font-size="24">Yunqiao Pro Preview</text>
+      <text x="480" y="884" text-anchor="middle" fill="#9fb7d4" font-family="Arial" font-size="24">Xiangyun Pro Preview</text>
     </svg>
   `;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
@@ -1206,7 +1206,7 @@ function App() {
   const [globalQuery, setGlobalQuery] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [apiKeySaved, setApiKeySaved] = useState(false);
-  const [apiBaseUrl, setApiBaseUrl] = useState("https://api.0029.org");
+  const [apiBaseUrl, setApiBaseUrl] = useState("https://kkflow.org");
   const [apiDiagnostic, setApiDiagnostic] = useState<ApiDiagnostic | null>(null);
   const [saveDirectory, setSaveDirectory] = useState("");
   const [requestTimeoutSeconds, setRequestTimeoutSeconds] = useState(300);
@@ -1247,14 +1247,14 @@ function App() {
   const [batchRetryLimit, setBatchRetryLimit] = useState(1);
   const batchControlRef = useRef<BatchControlStatus>("idle");
 
-  const currentHint = useMemo(() => pageHints[active] ?? "管理云桥Pro工作流。", [active]);
+  const currentHint = useMemo(() => pageHints[active] ?? "管理向云Pro工作流。", [active]);
   const queuedCount = useMemo(() => batchTasks.filter((task) => task.status === "已导入" || task.status === "生成中").length, [batchTasks]);
   const isCreatorActive = creatorPages.has(active);
 
-  const bridge = (window as Window & { yunqiao?: YunqiaoBridge }).yunqiao;
+  const bridge = (window as Window & { xiangyun?: XiangyunBridge }).xiangyun;
 
   useEffect(() => {
-    const appBridge = (window as Window & { yunqiao?: YunqiaoBridge }).yunqiao;
+    const appBridge = (window as Window & { xiangyun?: XiangyunBridge }).xiangyun;
     void appBridge?.getSettings?.().then((settings) => {
       if (settings?.saveDirectory) setSaveDirectory(settings.saveDirectory);
       if (settings?.hasApiKey) setApiKeySaved(true);
@@ -1278,13 +1278,13 @@ function App() {
 
   useEffect(() => {
     if (!assetsLoaded) return;
-    const appBridge = (window as Window & { yunqiao?: YunqiaoBridge }).yunqiao;
+    const appBridge = (window as Window & { xiangyun?: XiangyunBridge }).xiangyun;
     void appBridge?.saveAssetLibrary?.(assets);
   }, [assets, assetsLoaded]);
 
   useEffect(() => {
     if (!templatesLoaded) return;
-    const appBridge = (window as Window & { yunqiao?: YunqiaoBridge }).yunqiao;
+    const appBridge = (window as Window & { xiangyun?: XiangyunBridge }).xiangyun;
     void appBridge?.saveCustomTemplates?.(customTemplates);
   }, [customTemplates, templatesLoaded]);
 
@@ -1306,11 +1306,11 @@ function App() {
 
   function openOfficialSite() {
     if (!bridge?.openExternal) {
-      notify("请访问 0029.org 购买套餐并生成 API Key", "info");
+      notify("请访问 kkflow.org 购买套餐并生成 API Key", "info");
       return;
     }
-    void bridge.openExternal("https://0029.org").catch((error: unknown) => {
-      const message = error instanceof Error ? error.message : "无法打开 0029.org";
+    void bridge.openExternal("https://kkflow.org").catch((error: unknown) => {
+      const message = error instanceof Error ? error.message : "无法打开 kkflow.org";
       notify(message, "warning");
     });
   }
@@ -2315,7 +2315,7 @@ function makeAssetFromResult(result: GenerationResult, params: GenerationParams)
         <div className="brand">
           <div className="brandMark">云</div>
           <div>
-            <div className="brandTitle">云桥Pro</div>
+            <div className="brandTitle">向云Pro</div>
             <div className="brandSub">AI 商用生图工作台</div>
           </div>
         </div>
@@ -2342,7 +2342,7 @@ function makeAssetFromResult(result: GenerationResult, params: GenerationParams)
           </button>
           <button className="siteButton" onClick={openOfficialSite}>
             <ExternalLink size={15} />
-            0029.org
+            kkflow.org
           </button>
           <button className="quotaButton" onClick={() => setActive("API与云端存储设置")}>
             <Gauge size={16} />
@@ -2374,7 +2374,7 @@ function makeAssetFromResult(result: GenerationResult, params: GenerationParams)
       <section className="workspace">
         <div className="pageHead">
           <div>
-            <div className="eyebrow">Yunqiao Pro Console</div>
+            <div className="eyebrow">Xiangyun Pro Console</div>
             <h1>{active}</h1>
             <p>{currentHint}</p>
           </div>
@@ -3163,8 +3163,12 @@ function CreatorPage({
           </div>
         </div>
         <div className="promptPreviewBox">
-          <strong>最终提示词预览</strong>
-          <p>{finalPrompt}</p>
+          <strong>最终提示词（可编辑）</strong>
+          <textarea
+            value={finalPrompt}
+            onChange={(event) => onPromptChange(event.target.value)}
+            aria-label="最终提示词"
+          />
         </div>
         <button className="primaryButton wide" onClick={onGenerate} disabled={isGenerating}>
           <Sparkles size={16} />
@@ -3835,7 +3839,7 @@ function SettingsPage({
         <div className="panelHeader">
           <div>
             <h2>API 设置</h2>
-            <p>服务地址固定为 0029.org。请先到 0029.org 购买套餐并生成秘钥；Key 只保存在本机安全存储中。</p>
+            <p>服务地址固定为 kkflow.org。请先到 kkflow.org 购买套餐并生成秘钥；Key 只保存在本机安全存储中。</p>
           </div>
           <Database size={18} />
         </div>
@@ -3881,7 +3885,7 @@ function SettingsPage({
         <div className="settingsDivider" />
         <label>
           默认保存路径
-          <input value={saveDirectory || "未设置，默认使用系统图片目录/云桥Pro"} readOnly />
+          <input value={saveDirectory || "未设置，默认使用系统图片目录/向云Pro"} readOnly />
         </label>
         <div className="buttonRow">
           <button className="secondaryButton" onClick={onChooseSaveDirectory}>

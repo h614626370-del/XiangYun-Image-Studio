@@ -1,17 +1,17 @@
-# 云桥Pro 技术与 API 落地规范
+# 向云Pro 技术与 API 落地规范
 
 版本: v1.0  
 日期: 2026-06-28
 
 ## 1. 目标
 
-本规范用于把云桥Pro 从 PRD 变成可开发的桌面应用。所有 API 参数以 OpenAI GPT Image 官方文档为基准，客户端固定连接 `https://api.0029.org`。
+本规范用于把向云Pro 从 PRD 变成可开发的桌面应用。所有 API 参数以 OpenAI GPT Image 官方文档为基准，客户端固定连接 `https://kkflow.org`。
 
 ## 2. 服务配置
 
 ```ts
 export const IMAGE_API_CONFIG = {
-  defaultBaseURL: "https://api.0029.org",
+  defaultBaseURL: "https://kkflow.org",
   model: "gpt-image-2",
   generationPath: "/v1/images/generations",
   editPath: "/v1/images/edits",
@@ -19,13 +19,13 @@ export const IMAGE_API_CONFIG = {
 };
 ```
 
-应用固定 API Base URL 为 `https://api.0029.org`，设置页仅展示地址并提供 API Key 保存、超时时间和连通性测试。
+应用固定 API Base URL 为 `https://kkflow.org`，设置页仅展示地址并提供 API Key 保存、超时时间和连通性测试。
 
 密钥来源:
 
 1. 首次启动由用户在设置页输入。
 2. 保存到操作系统密钥链。
-3. 开发调试可从环境变量 `YUNQIAO_API_KEY` 读取。
+3. 开发调试可从环境变量 `XIANGYUN_API_KEY` 读取。
 4. 禁止明文写入仓库、工程文件、日志。
 
 请求头:
@@ -41,7 +41,7 @@ Authorization: Bearer <api_key>
 端点:
 
 ```http
-POST https://api.0029.org/v1/images/generations
+POST https://kkflow.org/v1/images/generations
 Content-Type: application/json
 ```
 
@@ -95,7 +95,7 @@ Content-Type: application/json
 | 2K 横图 | `2048x1152` | 影视概念和横版封面 |
 | 2K 竖图 | `1152x2048` | 竖版海报和高清封面 |
 
-注意: 若 `api.0029.org` 的代理暂不支持任意尺寸，需要在适配层降级到 `1024x1024`、`1536x1024`、`1024x1536`。
+注意: 若 `kkflow.org` 的代理暂不支持任意尺寸，需要在适配层降级到 `1024x1024`、`1536x1024`、`1024x1536`。
 
 ## 4. 图生图和编辑接口
 
@@ -104,7 +104,7 @@ Content-Type: application/json
 端点:
 
 ```http
-POST https://api.0029.org/v1/images/edits
+POST https://kkflow.org/v1/images/edits
 ```
 
 推荐使用 multipart/form-data 发送本地文件:
@@ -343,13 +343,13 @@ type UploadResult = {
 默认目录:
 
 ```text
-%USERPROFILE%/Pictures/YunqiaoPro
+%USERPROFILE%/Pictures/XiangyunPro
 ```
 
 项目结构:
 
 ```text
-YunqiaoPro/
+XiangyunPro/
   projects/
     {project_id}/
       originals/

@@ -2,7 +2,7 @@ import { contextBridge, ipcRenderer } from "electron";
 
 import type { ImageEditRequest, ImageGenerationRequest } from "../shared/imageApiTypes";
 
-contextBridge.exposeInMainWorld("yunqiao", {
+contextBridge.exposeInMainWorld("xiangyun", {
   setApiKey: (apiKey: string) => ipcRenderer.invoke("settings:set-api-key", apiKey),
   generateImage: (request: ImageGenerationRequest) => ipcRenderer.invoke("image:generate", request),
   editImage: (request: ImageEditRequest) => ipcRenderer.invoke("image:edit", request),

@@ -1,4 +1,4 @@
-# 云桥Pro 编译打包与客户交付说明
+# 向云Pro 编译打包与客户交付说明
 
 ## 1. 客户是否需要安装环境
 
@@ -74,7 +74,7 @@ D:\btc\st\st3\release
 客户拿到类似下面的文件即可安装:
 
 ```text
-云桥Pro-0.1.10-x64.exe
+向云Pro-0.1.10-x64.exe
 ```
 
 ## 6. 打包 Windows 绿色版
@@ -96,14 +96,14 @@ D:\btc\st\st3\scripts\build-win-portable.cmd
 正式交付:
 
 ```text
-YunQiao-Image-Studio-0.1.10-win-x64-portable.exe
+XiangYun-Image-Studio-0.1.10-win-x64-portable.exe
 docs/05-user-guide.md
 ```
 
 内测交付:
 
 ```text
-云桥Pro-0.1.10-x64.exe
+向云Pro-0.1.10-x64.exe
 docs/05-user-guide.md
 ```
 
@@ -114,7 +114,7 @@ docs/05-user-guide.md
 推荐三种方式:
 
 1. 每个客户一个独立 API Key，首次启动时让客户输入。
-2. 你做一个授权后台，客户端登录后由后台代理请求 `https://api.0029.org`。
+2. 你做一个授权后台，客户端登录后由后台代理请求 `https://kkflow.org`。
 3. 内测阶段临时把 Key 发给可信客户，但需要限制额度和有效期。
 
 正式商业版推荐第 2 种: 客户只登录账号，不直接接触底层 API Key。
@@ -145,8 +145,8 @@ npm run dist:mac
 当前 GitHub Actions 会在 tag 发布时自动构建：
 
 ```text
-YunQiao-Image-Studio-0.1.10-mac-x64.dmg
-YunQiao-Image-Studio-0.1.10-mac-arm64.dmg
+XiangYun-Image-Studio-0.1.10-mac-x64.dmg
+XiangYun-Image-Studio-0.1.10-mac-arm64.dmg
 ```
 
 正式发布需要 Apple Developer 证书和 notarization，否则 macOS 会提示安全限制。未签名版本的打开方式见 `MAC_BUILD.md` 和 `docs/05-user-guide.md`。
@@ -171,7 +171,7 @@ npm run build
 npm run dist:win-portable
 git add .
 git commit -m "release: v0.1.10"
-git tag -a v0.1.10 -m "YunQiao Image Studio v0.1.10"
+git tag -a v0.1.10 -m "XiangYun Image Studio v0.1.10"
 git push origin main
 git push origin v0.1.10
 ```

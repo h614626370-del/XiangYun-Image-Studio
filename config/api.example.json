@@ -1,5 +1,5 @@
 {
-  "apiBaseUrl": "https://api.0029.org",
+  "apiBaseUrl": "https://kkflow.org",
   "defaultModel": "gpt-image-2",
   "apiKeyStorage": "os_keychain",
   "requestTimeoutMs": 300000,

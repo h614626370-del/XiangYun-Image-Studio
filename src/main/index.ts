@@ -17,7 +17,7 @@ import type { ImageEditRequest, ImageGenerationRequest } from "../shared/imageAp
 
 let mainWindow: BrowserWindow | null = null;
 let encryptedApiKey: Buffer | null = null;
-const FIXED_API_BASE_URL = "https://api.0029.org";
+const FIXED_API_BASE_URL = "https://kkflow.org";
 const SUPPORTED_IMAGE_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 
 type PersistedStorageProfile = {
@@ -55,7 +55,7 @@ type AppSettings = {
 
 function defaultSettings(): AppSettings {
   return {
-    saveDirectory: path.join(app.getPath("pictures"), "云桥Pro"),
+    saveDirectory: path.join(app.getPath("pictures"), "向云Pro"),
     storageProfiles: [],
     requestTimeoutSeconds: 300,
     apiBaseUrl: FIXED_API_BASE_URL
@@ -197,11 +197,11 @@ async function readStorageSecret(profileId: string) {
 }
 
 async function hasSavedApiKey() {
-  return Boolean(process.env.YUNQIAO_API_KEY || (await readEncryptedApiKey()));
+  return Boolean(process.env.XIANGYUN_API_KEY || (await readEncryptedApiKey()));
 }
 
 function sanitizeName(name: string) {
-  return name.replace(/[<>:"/\\|?*\x00-\x1F]/g, "_").slice(0, 80) || "yunqiao";
+  return name.replace(/[<>:"/\\|?*\x00-\x1F]/g, "_").slice(0, 80) || "xiangyun";
 }
 
 function imageExtension(dataUrl: string) {
@@ -609,7 +609,7 @@ function createWindow() {
     minWidth: 1280,
     minHeight: 800,
     backgroundColor: "#0F1118",
-    title: "云桥Pro AI绘图",
+    title: "向云Pro AI绘图",
     webPreferences: {
       preload: path.join(__dirname, "../preload/index.js"),
       contextIsolation: true,
@@ -626,7 +626,7 @@ function createWindow() {
 }
 
 async function getApiKey() {
-  const envKey = process.env.YUNQIAO_API_KEY;
+  const envKey = process.env.XIANGYUN_API_KEY;
   if (envKey) return envKey;
   const stored = await readEncryptedApiKey();
   if (!stored) throw new Error("API Key 未配置");
@@ -658,11 +658,11 @@ ipcMain.handle("app:get-settings", async () => ({
 }));
 
 ipcMain.handle("app:check-update", async () => {
-  const response = await fetchWithTimeoutForMain("https://api.github.com/repos/jxb412/YunQiao-Image-Studio/releases/latest", {
+  const response = await fetchWithTimeoutForMain("https://api.github.com/repos/h614626370-del/XiangYun-Image-Studio/releases/latest", {
     method: "GET",
     headers: {
       Accept: "application/vnd.github+json",
-      "User-Agent": "YunQiao-Image-Studio"
+      "User-Agent": "XiangYun-Image-Studio"
     }
   }, 12000);
   if (!response.ok) {
@@ -693,7 +693,7 @@ ipcMain.handle("dialog:choose-directory", async () => {
   if (!mainWindow) throw new Error("主窗口未就绪");
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ["openDirectory", "createDirectory"],
-    title: "选择云桥Pro保存目录"
+    title: "选择向云Pro保存目录"
   });
   if (result.canceled || !result.filePaths[0]) return null;
   return writeSettings({ saveDirectory: result.filePaths[0] });
@@ -799,7 +799,7 @@ ipcMain.handle("assets:export-url-list", async (_event, assets: Array<{ name: st
   const settings = await readSettings();
   await mkdir(settings.saveDirectory, { recursive: true });
   const content = assets.map((asset) => `${asset.name}\t${asset.cloudUrl || "未上传"}`).join("\n");
-  const filePath = path.join(settings.saveDirectory, `云桥Pro-URL清单-${Date.now()}.txt`);
+  const filePath = path.join(settings.saveDirectory, `向云Pro-URL清单-${Date.now()}.txt`);
   await writeFile(filePath, content, "utf-8");
   return { path: filePath };
 });
@@ -822,7 +822,7 @@ ipcMain.handle("batch:export-log", async (_event, tasks: Array<{ project: string
       task.error || ""
     ].join("\t"))
   ];
-  const filePath = path.join(settings.saveDirectory, `云桥Pro-批量任务日志-${Date.now()}.tsv`);
+  const filePath = path.join(settings.saveDirectory, `向云Pro-批量任务日志-${Date.now()}.tsv`);
   await writeFile(filePath, rows.join("\n"), "utf-8");
   return { path: filePath };
 });
@@ -858,7 +858,7 @@ ipcMain.handle("batch:export-template", async () => {
       size: "1024x1536"
     }
   ]);
-  const filePath = path.join(settings.saveDirectory, `云桥Pro-批量生产导入模板-${Date.now()}.xlsx`);
+  const filePath = path.join(settings.saveDirectory, `向云Pro-批量生产导入模板-${Date.now()}.xlsx`);
   await workbook.xlsx.writeFile(filePath);
   return { path: filePath };
 });
@@ -866,8 +866,8 @@ ipcMain.handle("batch:export-template", async () => {
 ipcMain.handle("templates:export", async (_event, templates: unknown[]) => {
   if (!mainWindow) throw new Error("主窗口未就绪");
   const result = await dialog.showSaveDialog(mainWindow, {
-    title: "导出云桥Pro模板包",
-    defaultPath: `云桥Pro-模板包-${Date.now()}.json`,
+    title: "导出向云Pro模板包",
+    defaultPath: `向云Pro-模板包-${Date.now()}.json`,
     filters: [{ name: "JSON 模板包", extensions: ["json"] }]
   });
   if (result.canceled || !result.filePath) return null;
@@ -879,7 +879,7 @@ ipcMain.handle("templates:import", async () => {
   if (!mainWindow) throw new Error("主窗口未就绪");
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ["openFile"],
-    title: "导入云桥Pro模板包",
+    title: "导入向云Pro模板包",
     filters: [{ name: "JSON 模板包", extensions: ["json"] }]
   });
   if (result.canceled || !result.filePaths[0]) return null;
@@ -912,7 +912,7 @@ ipcMain.handle("assets:create-zip", async (_event, assets: Array<{ name: string;
       }
     }
   }
-  const filePath = path.join(settings.saveDirectory, `云桥Pro-素材包-${Date.now()}.zip`);
+  const filePath = path.join(settings.saveDirectory, `向云Pro-素材包-${Date.now()}.zip`);
   await writeFile(filePath, createZip(files));
   return { path: filePath };
 });
@@ -933,12 +933,12 @@ ipcMain.handle("assets:upload", async (_event, asset: { name: string; project?: 
 ipcMain.handle("storage:test-upload", async (_event, profile: PersistedStorageProfile) => {
   const settings = await readSettings();
   await mkdir(settings.saveDirectory, { recursive: true });
-  const testFile = path.join(settings.saveDirectory, `云桥Pro-上传测试-${Date.now()}.png`);
+  const testFile = path.join(settings.saveDirectory, `向云Pro-上传测试-${Date.now()}.png`);
   const onePixelPng = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMB/ax2kQAAAABJRU5ErkJggg==", "base64");
   await writeFile(testFile, onePixelPng);
   const startedAt = Date.now();
   const result = await uploadWithStorage(profile, {
-    name: "云桥Pro上传测试",
+    name: "向云Pro上传测试",
     project: "系统测试",
     source: "存储设置",
     localPath: testFile

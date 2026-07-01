@@ -1,8 +1,8 @@
 {
-  "name": "yunqiao-pro",
+  "name": "xiangyun-pro",
   "version": "0.1.10",
   "private": true,
-  "description": "云桥Pro AI生图桌面端",
+  "description": "向云Pro AI生图桌面端",
   "main": "out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
@@ -45,8 +45,8 @@
     "vite": "^5.4.11"
   },
   "build": {
-    "appId": "com.yunqiaopro.desktop",
-    "productName": "云桥Pro",
+    "appId": "com.xiangyunpro.desktop",
+    "productName": "向云Pro",
     "npmRebuild": false,
     "directories": {
       "output": "release"
@@ -79,7 +79,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "云桥Pro"
+      "shortcutName": "向云Pro"
     }
   }
 }

@@ -1,18 +1,18 @@
-# 云桥Pro v0.1.10 使用说明
+# 向云Pro v0.1.10 使用说明
 
 ## 1. 客户端下载
 
 GitHub Release 页面：
 
 ```text
-https://github.com/jxb412/YunQiao-Image-Studio/releases
+https://github.com/h614626370-del/XiangYun-Image-Studio/releases
 ```
 
 v0.1.10 提供三个客户端：
 
-- Windows x64：`YunQiao-Image-Studio-0.1.10-win-x64-portable.exe`
-- macOS Intel x64：`YunQiao-Image-Studio-0.1.10-mac-x64.dmg`
-- macOS Apple Silicon arm64：`YunQiao-Image-Studio-0.1.10-mac-arm64.dmg`
+- Windows x64：`XiangYun-Image-Studio-0.1.10-win-x64-portable.exe`
+- macOS Intel x64：`XiangYun-Image-Studio-0.1.10-mac-x64.dmg`
+- macOS Apple Silicon arm64：`XiangYun-Image-Studio-0.1.10-mac-arm64.dmg`
 
 Windows 版本是便携版，下载后双击 exe 即可运行，不需要安装 Node.js、npm 或 Electron。
 
@@ -38,10 +38,10 @@ Windows 已保护你的电脑
 应用固定使用：
 
 ```text
-https://api.0029.org
+https://kkflow.org
 ```
 
-用户需要先到 `0029.org` 购买套餐并生成秘钥，然后在 `API与云端存储设置` 页面保存 API Key。
+用户需要先到 `kkflow.org` 购买套餐并生成秘钥，然后在 `API与云端存储设置` 页面保存 API Key。
 
 设置页支持：
 
@@ -193,14 +193,14 @@ AI 修图工具箱包含：
 推荐方式：
 
 1. 打开 DMG，把应用拖到 `Applications`。
-2. 在 `Applications` 中右键点击 `云桥Pro.app`。
+2. 在 `Applications` 中右键点击 `向云Pro.app`。
 3. 选择 `打开`。
 4. 弹窗提示无法验证时，再次点击 `打开`。
 
 如果仍提示无法打开，可在终端执行：
 
 ```bash
-xattr -cr /Applications/云桥Pro.app
+xattr -cr /Applications/向云Pro.app
 ```
 
 仅信任来源软件才可以这样处理。

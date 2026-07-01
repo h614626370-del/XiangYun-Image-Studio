@@ -71,13 +71,13 @@ jobs:
         run: |
           mkdir -p release-assets
           find artifacts -type f -maxdepth 3 -print
-          cp artifacts/windows-portable/*.exe release-assets/YunQiao-Image-Studio-${GITHUB_REF_NAME#v}-win-x64-portable.exe
-          cp artifacts/macos-x64-dmg/*.dmg release-assets/YunQiao-Image-Studio-${GITHUB_REF_NAME#v}-mac-x64.dmg
-          cp artifacts/macos-arm64-dmg/*.dmg release-assets/YunQiao-Image-Studio-${GITHUB_REF_NAME#v}-mac-arm64.dmg
+          cp artifacts/windows-portable/*.exe release-assets/XiangYun-Image-Studio-${GITHUB_REF_NAME#v}-win-x64-portable.exe
+          cp artifacts/macos-x64-dmg/*.dmg release-assets/XiangYun-Image-Studio-${GITHUB_REF_NAME#v}-mac-x64.dmg
+          cp artifacts/macos-arm64-dmg/*.dmg release-assets/XiangYun-Image-Studio-${GITHUB_REF_NAME#v}-mac-arm64.dmg
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: YunQiao Image Studio ${{ github.ref_name }}
+          name: XiangYun Image Studio ${{ github.ref_name }}
           files: release-assets/*
           draft: false
           prerelease: false

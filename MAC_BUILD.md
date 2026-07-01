@@ -12,7 +12,7 @@ bash scripts/build-mac-dir.sh
 产物：
 
 ```text
-release/mac/云桥Pro.app
+release/mac/向云Pro.app
 ```
 
 ## 在 macOS 上生成 DMG
@@ -25,15 +25,15 @@ bash scripts/build-mac.sh
 产物示例：
 
 ```text
-release/云桥Pro-0.1.9-x64.dmg
-release/云桥Pro-0.1.9-arm64.dmg
+release/向云Pro-0.1.9-x64.dmg
+release/向云Pro-0.1.9-arm64.dmg
 ```
 
 GitHub Release 自动构建会生成：
 
 ```text
-YunQiao-Image-Studio-0.1.9-mac-x64.dmg
-YunQiao-Image-Studio-0.1.9-mac-arm64.dmg
+XiangYun-Image-Studio-0.1.9-mac-x64.dmg
+XiangYun-Image-Studio-0.1.9-mac-arm64.dmg
 ```
 
 - Intel 芯片 Mac 下载 `mac-x64.dmg`。
@@ -61,7 +61,7 @@ xattr -cr /Applications/你的软件名.app
 示例：
 
 ```bash
-xattr -cr /Applications/云桥Pro.app
+xattr -cr /Applications/向云Pro.app
 ```
 
 ### 方法 3：临时关闭安全策略（不推荐）
