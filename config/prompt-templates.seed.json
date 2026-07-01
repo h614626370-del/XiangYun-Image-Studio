@@ -220,6 +220,86 @@
     "avoid": "不要生成价格和小字。"
   },
   {
+    "id": "portrait_social_avatar",
+    "industry": "人物图像",
+    "scene": "社交头像写真",
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "jpeg",
+    "prompt": "生成一张高质感社交头像写真。人物为 {character}，身份/气质为 {selling_points}，风格 {style}，面向 {audience}。半身或近景构图，眼神自然，脸部清晰，背景干净有层次，小尺寸也有识别度，适合微信、小红书、抖音、个人主页头像。",
+    "avoid": "避免真实明星肖像、过度磨皮、五官崩坏、手部畸形、低俗暴露、未成年人不当表达、文字水印。"
+  },
+  {
+    "id": "portrait_ai_photo",
+    "industry": "人物图像",
+    "scene": "AI 写真大片",
+    "size": "1024x1536",
+    "quality": "high",
+    "format": "jpeg",
+    "prompt": "生成一张 AI 人像写真大片。人物为 {character}，主题为 {subject}，情绪为 {style}，场景为 {scene}。人物姿态自然，服装妆发协调，光影高级，肤质真实，构图适合社媒发布、个人形象和写真样片。",
+    "avoid": "避免真实明星肖像、低俗姿态、脸部崩坏、皮肤塑料感、肢体比例异常、文字乱码。"
+  },
+  {
+    "id": "anime_avatar_clean",
+    "industry": "二次元头像",
+    "scene": "日系清透头像",
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png",
+    "prompt": "生成一张日系清透二次元头像。角色为 {character}，性格为 {selling_points}，画风 {style}，色彩 {color_palette}。头像构图清晰，五官精致，发型、服装和配色统一，背景简洁，适合社交头像、账号 IP 和虚拟形象。",
+    "avoid": "避免盗用知名动漫角色、真实明星转绘、五官崩坏、发型漂移、低清晰度、文字水印。"
+  },
+  {
+    "id": "anime_wallpaper_mobile",
+    "industry": "二次元头像",
+    "scene": "动漫手机壁纸",
+    "size": "1152x2048",
+    "quality": "high",
+    "format": "png",
+    "prompt": "生成一张二次元手机壁纸。主题为 {subject}，角色为 {character}，氛围为 {style}。竖版构图，角色与背景层次清楚，上方和下方保留手机锁屏图标空间，适合年轻用户手机壁纸和社媒分享。",
+    "avoid": "避免文字乱码、侵权角色、人物脸部崩坏、背景过乱、关键主体被裁切。"
+  },
+  {
+    "id": "trend_y2k_poster",
+    "industry": "潮流社交",
+    "scene": "Y2K 潮流海报",
+    "size": "1024x1536",
+    "quality": "medium",
+    "format": "jpeg",
+    "prompt": "生成一张 Y2K 潮流社交海报底图。主题为 {subject}，目标人群为 {audience}，色彩 {color_palette}。画面包含金属、闪光、复古数码、贴纸、街头或音乐元素，构图年轻有冲击力，留出标题区域。",
+    "avoid": "避免侵权品牌标识、乱码文字、元素过度拥挤、低清晰度、低俗内容。"
+  },
+  {
+    "id": "trend_lockscreen",
+    "industry": "潮流社交",
+    "scene": "手机锁屏壁纸",
+    "size": "1152x2048",
+    "quality": "high",
+    "format": "jpeg",
+    "prompt": "生成一张年轻化手机锁屏壁纸。主题为 {subject}，风格 {style}，色彩 {color_palette}。竖版构图，中心视觉有记忆点，上下区域保留图标和时间显示空间，适合手机壁纸、社交分享和主题活动。",
+    "avoid": "避免文字乱码、主体被顶部时间遮挡、过暗、低清晰度、侵权素材。"
+  },
+  {
+    "id": "virtual_vtuber_avatar",
+    "industry": "虚拟IP",
+    "scene": "虚拟主播头像",
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png",
+    "prompt": "生成一张虚拟主播头像。角色为 {character}，人设关键词为 {selling_points}，风格 {style}，色彩 {color_palette}。头像精致、轮廓清楚、表情有亲和力，适合直播间、社交账号和虚拟主播主页。",
+    "avoid": "避免复刻知名 VTuber 或动漫 IP、真实明星脸、五官崩坏、装饰过度遮挡脸部。"
+  },
+  {
+    "id": "virtual_character_sheet",
+    "industry": "虚拟IP",
+    "scene": "虚拟人设定稿",
+    "size": "1024x1536",
+    "quality": "high",
+    "format": "png",
+    "prompt": "生成一张虚拟人角色设定稿。角色为 {character}，身份/世界观为 {subject}，性格和卖点为 {selling_points}。展示完整服装、发型、配饰和标志性元素，背景简洁，适合虚拟主播、品牌 IP 和账号人设。",
+    "avoid": "避免侵权角色、服装结构混乱、手部畸形、设定元素过多、文字乱码。"
+  },
+  {
     "id": "img2img_product_background",
     "industry": "图生图续改",
     "scene": "商品换背景",
