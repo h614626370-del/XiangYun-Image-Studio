@@ -2904,10 +2904,30 @@ function CreatorPage({
     label: `等待生成 ${index + 1}`,
     status: "empty"
   }));
+  const [templateIndustryFilter, setTemplateIndustryFilter] = useState("");
   const selectedResult = filledResults.find((item) => item.id === selectedResultId);
   const previousImageResult = [...filledResults]
     .reverse()
     .find((item) => item.id !== selectedResult?.id && isImageResult(item));
+  const industryOptions = useMemo(
+    () => Array.from(new Set(templates.map((template) => template.industry))).sort((a, b) => a.localeCompare(b, "zh-Hans-CN")),
+    [templates]
+  );
+  const templateGroups = useMemo(
+    () => {
+      const grouped = new Map<string, Template[]>();
+      for (const template of templates) {
+        if (templateIndustryFilter && template.industry !== templateIndustryFilter) continue;
+        const items = grouped.get(template.industry) ?? [];
+        items.push(template);
+        grouped.set(template.industry, items);
+      }
+      return Array.from(grouped.entries())
+        .sort(([industryA], [industryB]) => industryA.localeCompare(industryB, "zh-Hans-CN"))
+        .map(([industry, items]) => ({ industry, items }));
+    },
+    [templateIndustryFilter, templates]
+  );
   const sizeOptions = useMemo(
     () => Array.from(new Set([...COMMON_IMAGE_SIZES, ...templates.map((item) => item.size)])),
     [templates]
@@ -2929,16 +2949,45 @@ function CreatorPage({
           <input value={currentProject} onChange={(event) => onProjectChange(event.target.value)} placeholder="例如 店铺名 / 短剧项目 / 客户名称" />
         </label>
 
-        <label>
-          行业模板
-          <select value={selectedTemplate.id} onChange={(event) => onTemplateChange(templates.find((item) => item.id === event.target.value) ?? templates[0])}>
-            {templates.map((template) => (
-              <option value={template.id} key={template.id}>
-                {template.industry} / {template.scene}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="templatePicker">
+          <label>
+            行业分类
+            <select
+              value={templateIndustryFilter}
+              onChange={(event) => {
+                const nextIndustry = event.target.value;
+                setTemplateIndustryFilter(nextIndustry);
+                if (!nextIndustry) return;
+                const nextTemplate = templates.find((template) => template.industry === nextIndustry) ?? templates[0];
+                onTemplateChange(nextTemplate);
+              }}
+            >
+              <option value="">全部行业</option>
+              {industryOptions.map((industry) => (
+                <option value={industry} key={industry}>
+                  {industry}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            场景模板
+            <select
+              value={selectedTemplate.id}
+              onChange={(event) => onTemplateChange(templates.find((item) => item.id === event.target.value) ?? templateGroups[0]?.items[0] ?? templates[0])}
+            >
+              {templateGroups.map((group) => (
+                <optgroup label={group.industry} key={group.industry}>
+                  {group.items.map((template) => (
+                    <option value={template.id} key={template.id}>
+                      {template.scene}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+          </label>
+        </div>
         <div className="templateSummary">
           <span>{selectedTemplate.industry}</span>
           <strong>{selectedTemplate.scene}</strong>
@@ -3163,12 +3212,8 @@ function CreatorPage({
           </div>
         </div>
         <div className="promptPreviewBox">
-          <strong>最终提示词（可编辑）</strong>
-          <textarea
-            value={finalPrompt}
-            onChange={(event) => onPromptChange(event.target.value)}
-            aria-label="最终提示词"
-          />
+          <strong>最终提示词预览</strong>
+          <p>{finalPrompt}</p>
         </div>
         <button className="primaryButton wide" onClick={onGenerate} disabled={isGenerating}>
           <Sparkles size={16} />

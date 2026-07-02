@@ -566,6 +566,20 @@ label {
   font-size: 11px;
 }
 
+.templatePicker {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 10px;
+}
+
+.templatePicker label {
+  min-width: 0;
+}
+
+.templatePicker select {
+  min-width: 0;
+}
+
 .templateSummary {
   display: grid;
   gap: 4px;
